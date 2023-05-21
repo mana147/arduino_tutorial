@@ -1,0 +1,1227 @@
+
+bin\Debug\code_AVR_ATMEGA_32.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000088c  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000010  00800060  0000088c  00000940  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000025  00800070  00800070  00000950  2**0
+                  ALLOC
+  3 .fuse         00000002  00820000  00820000  00000950  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .debug_aranges 00000020  00000000  00000000  00000952  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_pubnames 00000168  00000000  00000000  00000972  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000429  00000000  00000000  00000ada  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000018f  00000000  00000000  00000f03  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000466  00000000  00000000  00001092  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000d0  00000000  00000000  000014f8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000171  00000000  00000000  000015c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec e8       	ldi	r30, 0x8C	; 140
+  68:	f8 e0       	ldi	r31, 0x08	; 8
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 37       	cpi	r26, 0x70	; 112
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e7       	ldi	r26, 0x70	; 112
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 39       	cpi	r26, 0x95	; 149
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 9a 03 	call	0x734	; 0x734 <main>
+  8a:	0c 94 44 04 	jmp	0x888	; 0x888 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <Read2Nib>:
+#define DATA_O		PORTD
+#define DATA_I		PIND
+#define DDR_DATA	DDRD
+*/
+
+char Read2Nib(void){
+  92:	df 93       	push	r29
+  94:	cf 93       	push	r28
+  96:	00 d0       	rcall	.+0      	; 0x98 <Read2Nib+0x6>
+  98:	cd b7       	in	r28, 0x3d	; 61
+  9a:	de b7       	in	r29, 0x3e	; 62
+	char HNib, LNib;
+	DATA_O |=0xF0;
+  9c:	a2 e3       	ldi	r26, 0x32	; 50
+  9e:	b0 e0       	ldi	r27, 0x00	; 0
+  a0:	e2 e3       	ldi	r30, 0x32	; 50
+  a2:	f0 e0       	ldi	r31, 0x00	; 0
+  a4:	80 81       	ld	r24, Z
+  a6:	80 6f       	ori	r24, 0xF0	; 240
+  a8:	8c 93       	st	X, r24
+	
+	sbi(CTRL,EN); //enable	
+  aa:	a2 e3       	ldi	r26, 0x32	; 50
+  ac:	b0 e0       	ldi	r27, 0x00	; 0
+  ae:	e2 e3       	ldi	r30, 0x32	; 50
+  b0:	f0 e0       	ldi	r31, 0x00	; 0
+  b2:	80 81       	ld	r24, Z
+  b4:	84 60       	ori	r24, 0x04	; 4
+  b6:	8c 93       	st	X, r24
+	DDR_DATA &=0x0F;	
+  b8:	a1 e3       	ldi	r26, 0x31	; 49
+  ba:	b0 e0       	ldi	r27, 0x00	; 0
+  bc:	e1 e3       	ldi	r30, 0x31	; 49
+  be:	f0 e0       	ldi	r31, 0x00	; 0
+  c0:	80 81       	ld	r24, Z
+  c2:	8f 70       	andi	r24, 0x0F	; 15
+  c4:	8c 93       	st	X, r24
+	HNib=DATA_I & 0xF0;
+  c6:	e0 e3       	ldi	r30, 0x30	; 48
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	80 81       	ld	r24, Z
+  cc:	80 7f       	andi	r24, 0xF0	; 240
+  ce:	8a 83       	std	Y+2, r24	; 0x02
+	cbi(CTRL,EN); //disable
+  d0:	a2 e3       	ldi	r26, 0x32	; 50
+  d2:	b0 e0       	ldi	r27, 0x00	; 0
+  d4:	e2 e3       	ldi	r30, 0x32	; 50
+  d6:	f0 e0       	ldi	r31, 0x00	; 0
+  d8:	80 81       	ld	r24, Z
+  da:	8b 7f       	andi	r24, 0xFB	; 251
+  dc:	8c 93       	st	X, r24
+	
+	sbi(CTRL,EN); //enable
+  de:	a2 e3       	ldi	r26, 0x32	; 50
+  e0:	b0 e0       	ldi	r27, 0x00	; 0
+  e2:	e2 e3       	ldi	r30, 0x32	; 50
+  e4:	f0 e0       	ldi	r31, 0x00	; 0
+  e6:	80 81       	ld	r24, Z
+  e8:	84 60       	ori	r24, 0x04	; 4
+  ea:	8c 93       	st	X, r24
+	LNib = DATA_I & 0xF0;
+  ec:	e0 e3       	ldi	r30, 0x30	; 48
+  ee:	f0 e0       	ldi	r31, 0x00	; 0
+  f0:	80 81       	ld	r24, Z
+  f2:	80 7f       	andi	r24, 0xF0	; 240
+  f4:	89 83       	std	Y+1, r24	; 0x01
+	cbi(CTRL,EN); //disable
+  f6:	a2 e3       	ldi	r26, 0x32	; 50
+  f8:	b0 e0       	ldi	r27, 0x00	; 0
+  fa:	e2 e3       	ldi	r30, 0x32	; 50
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	80 81       	ld	r24, Z
+ 100:	8b 7f       	andi	r24, 0xFB	; 251
+ 102:	8c 93       	st	X, r24
+	LNib>>=4;
+ 104:	89 81       	ldd	r24, Y+1	; 0x01
+ 106:	85 95       	asr	r24
+ 108:	85 95       	asr	r24
+ 10a:	85 95       	asr	r24
+ 10c:	85 95       	asr	r24
+ 10e:	89 83       	std	Y+1, r24	; 0x01
+	return (HNib|LNib);
+ 110:	9a 81       	ldd	r25, Y+2	; 0x02
+ 112:	89 81       	ldd	r24, Y+1	; 0x01
+ 114:	89 2b       	or	r24, r25
+}
+ 116:	0f 90       	pop	r0
+ 118:	0f 90       	pop	r0
+ 11a:	cf 91       	pop	r28
+ 11c:	df 91       	pop	r29
+ 11e:	08 95       	ret
+
+00000120 <Write2Nib>:
+
+void Write2Nib(uint8_t chr){
+ 120:	df 93       	push	r29
+ 122:	cf 93       	push	r28
+ 124:	00 d0       	rcall	.+0      	; 0x126 <Write2Nib+0x6>
+ 126:	00 d0       	rcall	.+0      	; 0x128 <Write2Nib+0x8>
+ 128:	cd b7       	in	r28, 0x3d	; 61
+ 12a:	de b7       	in	r29, 0x3e	; 62
+ 12c:	8c 83       	std	Y+4, r24	; 0x04
+
+	uint8_t HNib, LNib, temp_data;	
+	temp_data=DATA_O & 0x0F;
+ 12e:	e2 e3       	ldi	r30, 0x32	; 50
+ 130:	f0 e0       	ldi	r31, 0x00	; 0
+ 132:	80 81       	ld	r24, Z
+ 134:	8f 70       	andi	r24, 0x0F	; 15
+ 136:	89 83       	std	Y+1, r24	; 0x01
+
+	HNib=chr & 0xF0;
+ 138:	8c 81       	ldd	r24, Y+4	; 0x04
+ 13a:	80 7f       	andi	r24, 0xF0	; 240
+ 13c:	8b 83       	std	Y+3, r24	; 0x03
+	LNib=(chr<<4) & 0xF0;		
+ 13e:	8c 81       	ldd	r24, Y+4	; 0x04
+ 140:	88 2f       	mov	r24, r24
+ 142:	90 e0       	ldi	r25, 0x00	; 0
+ 144:	82 95       	swap	r24
+ 146:	92 95       	swap	r25
+ 148:	90 7f       	andi	r25, 0xF0	; 240
+ 14a:	98 27       	eor	r25, r24
+ 14c:	80 7f       	andi	r24, 0xF0	; 240
+ 14e:	98 27       	eor	r25, r24
+ 150:	8a 83       	std	Y+2, r24	; 0x02
+		
+	DATA_O =(HNib |temp_data);	
+ 152:	e2 e3       	ldi	r30, 0x32	; 50
+ 154:	f0 e0       	ldi	r31, 0x00	; 0
+ 156:	9b 81       	ldd	r25, Y+3	; 0x03
+ 158:	89 81       	ldd	r24, Y+1	; 0x01
+ 15a:	89 2b       	or	r24, r25
+ 15c:	80 83       	st	Z, r24
+	sbi(CTRL,EN); //enable
+ 15e:	a2 e3       	ldi	r26, 0x32	; 50
+ 160:	b0 e0       	ldi	r27, 0x00	; 0
+ 162:	e2 e3       	ldi	r30, 0x32	; 50
+ 164:	f0 e0       	ldi	r31, 0x00	; 0
+ 166:	80 81       	ld	r24, Z
+ 168:	84 60       	ori	r24, 0x04	; 4
+ 16a:	8c 93       	st	X, r24
+	cbi(CTRL,EN); //disable	
+ 16c:	a2 e3       	ldi	r26, 0x32	; 50
+ 16e:	b0 e0       	ldi	r27, 0x00	; 0
+ 170:	e2 e3       	ldi	r30, 0x32	; 50
+ 172:	f0 e0       	ldi	r31, 0x00	; 0
+ 174:	80 81       	ld	r24, Z
+ 176:	8b 7f       	andi	r24, 0xFB	; 251
+ 178:	8c 93       	st	X, r24
+	
+	DATA_O =(LNib|temp_data);		
+ 17a:	e2 e3       	ldi	r30, 0x32	; 50
+ 17c:	f0 e0       	ldi	r31, 0x00	; 0
+ 17e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 180:	89 81       	ldd	r24, Y+1	; 0x01
+ 182:	89 2b       	or	r24, r25
+ 184:	80 83       	st	Z, r24
+	sbi(CTRL,EN); //enable
+ 186:	a2 e3       	ldi	r26, 0x32	; 50
+ 188:	b0 e0       	ldi	r27, 0x00	; 0
+ 18a:	e2 e3       	ldi	r30, 0x32	; 50
+ 18c:	f0 e0       	ldi	r31, 0x00	; 0
+ 18e:	80 81       	ld	r24, Z
+ 190:	84 60       	ori	r24, 0x04	; 4
+ 192:	8c 93       	st	X, r24
+	cbi(CTRL,EN); //disable
+ 194:	a2 e3       	ldi	r26, 0x32	; 50
+ 196:	b0 e0       	ldi	r27, 0x00	; 0
+ 198:	e2 e3       	ldi	r30, 0x32	; 50
+ 19a:	f0 e0       	ldi	r31, 0x00	; 0
+ 19c:	80 81       	ld	r24, Z
+ 19e:	8b 7f       	andi	r24, 0xFB	; 251
+ 1a0:	8c 93       	st	X, r24
+}
+ 1a2:	0f 90       	pop	r0
+ 1a4:	0f 90       	pop	r0
+ 1a6:	0f 90       	pop	r0
+ 1a8:	0f 90       	pop	r0
+ 1aa:	cf 91       	pop	r28
+ 1ac:	df 91       	pop	r29
+ 1ae:	08 95       	ret
+
+000001b0 <Write8Bit>:
+
+void Write8Bit(uint8_t chr){
+ 1b0:	df 93       	push	r29
+ 1b2:	cf 93       	push	r28
+ 1b4:	0f 92       	push	r0
+ 1b6:	cd b7       	in	r28, 0x3d	; 61
+ 1b8:	de b7       	in	r29, 0x3e	; 62
+ 1ba:	89 83       	std	Y+1, r24	; 0x01
+	DATA_O=chr;   //out 8 bits to DATA Line
+ 1bc:	e2 e3       	ldi	r30, 0x32	; 50
+ 1be:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c0:	89 81       	ldd	r24, Y+1	; 0x01
+ 1c2:	80 83       	st	Z, r24
+	sbi(CTRL,EN); //enable
+ 1c4:	a2 e3       	ldi	r26, 0x32	; 50
+ 1c6:	b0 e0       	ldi	r27, 0x00	; 0
+ 1c8:	e2 e3       	ldi	r30, 0x32	; 50
+ 1ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 1cc:	80 81       	ld	r24, Z
+ 1ce:	84 60       	ori	r24, 0x04	; 4
+ 1d0:	8c 93       	st	X, r24
+	cbi(CTRL,EN); //disable
+ 1d2:	a2 e3       	ldi	r26, 0x32	; 50
+ 1d4:	b0 e0       	ldi	r27, 0x00	; 0
+ 1d6:	e2 e3       	ldi	r30, 0x32	; 50
+ 1d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 1da:	80 81       	ld	r24, Z
+ 1dc:	8b 7f       	andi	r24, 0xFB	; 251
+ 1de:	8c 93       	st	X, r24
+}
+ 1e0:	0f 90       	pop	r0
+ 1e2:	cf 91       	pop	r28
+ 1e4:	df 91       	pop	r29
+ 1e6:	08 95       	ret
+
+000001e8 <wait_LCD>:
+
+void wait_LCD(void){	
+ 1e8:	df 93       	push	r29
+ 1ea:	cf 93       	push	r28
+ 1ec:	0f 92       	push	r0
+ 1ee:	cd b7       	in	r28, 0x3d	; 61
+ 1f0:	de b7       	in	r29, 0x3e	; 62
+		cbi(CTRL,RW); //ready for next step	
+		DDR_DATA=0xFF;//Ready to Out
+	#else
+		char temp_val;
+		while(1){
+			cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
+ 1f2:	a2 e3       	ldi	r26, 0x32	; 50
+ 1f4:	b0 e0       	ldi	r27, 0x00	; 0
+ 1f6:	e2 e3       	ldi	r30, 0x32	; 50
+ 1f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fa:	80 81       	ld	r24, Z
+ 1fc:	8e 7f       	andi	r24, 0xFE	; 254
+ 1fe:	8c 93       	st	X, r24
+			sbi(CTRL,RW); //the Direction of this COMMAND is from LCD -> chip
+ 200:	a2 e3       	ldi	r26, 0x32	; 50
+ 202:	b0 e0       	ldi	r27, 0x00	; 0
+ 204:	e2 e3       	ldi	r30, 0x32	; 50
+ 206:	f0 e0       	ldi	r31, 0x00	; 0
+ 208:	80 81       	ld	r24, Z
+ 20a:	82 60       	ori	r24, 0x02	; 2
+ 20c:	8c 93       	st	X, r24
+			temp_val=Read2Nib();
+ 20e:	0e 94 49 00 	call	0x92	; 0x92 <Read2Nib>
+ 212:	89 83       	std	Y+1, r24	; 0x01
+			if (bit_is_clear(temp_val,7)) break;
+ 214:	fe 01       	movw	r30, r28
+ 216:	31 96       	adiw	r30, 0x01	; 1
+ 218:	80 81       	ld	r24, Z
+ 21a:	88 23       	and	r24, r24
+ 21c:	54 f3       	brlt	.-44     	; 0x1f2 <wait_LCD+0xa>
+		}
+		cbi(CTRL,RW); //ready for next step	
+ 21e:	a2 e3       	ldi	r26, 0x32	; 50
+ 220:	b0 e0       	ldi	r27, 0x00	; 0
+ 222:	e2 e3       	ldi	r30, 0x32	; 50
+ 224:	f0 e0       	ldi	r31, 0x00	; 0
+ 226:	80 81       	ld	r24, Z
+ 228:	8d 7f       	andi	r24, 0xFD	; 253
+ 22a:	8c 93       	st	X, r24
+		DDR_DATA=0xFF;//Ready to Out		
+ 22c:	e1 e3       	ldi	r30, 0x31	; 49
+ 22e:	f0 e0       	ldi	r31, 0x00	; 0
+ 230:	8f ef       	ldi	r24, 0xFF	; 255
+ 232:	80 83       	st	Z, r24
+	#endif
+	
+	//_delay_ms(1);
+	
+}
+ 234:	0f 90       	pop	r0
+ 236:	cf 91       	pop	r28
+ 238:	df 91       	pop	r29
+ 23a:	08 95       	ret
+
+0000023c <init_LCD>:
+
+
+void init_LCD(void){
+ 23c:	df 93       	push	r29
+ 23e:	cf 93       	push	r28
+ 240:	cd b7       	in	r28, 0x3d	; 61
+ 242:	de b7       	in	r29, 0x3e	; 62
+	DDR_CTRL=0xFF;
+ 244:	e1 e3       	ldi	r30, 0x31	; 49
+ 246:	f0 e0       	ldi	r31, 0x00	; 0
+ 248:	8f ef       	ldi	r24, 0xFF	; 255
+ 24a:	80 83       	st	Z, r24
+	DDR_DATA=0xFF;
+ 24c:	e1 e3       	ldi	r30, 0x31	; 49
+ 24e:	f0 e0       	ldi	r31, 0x00	; 0
+ 250:	8f ef       	ldi	r24, 0xFF	; 255
+ 252:	80 83       	st	Z, r24
+//Function set------------------------------------------------------------------------------
+	cbi(CTRL,RS);   // the following data is COMMAND
+ 254:	a2 e3       	ldi	r26, 0x32	; 50
+ 256:	b0 e0       	ldi	r27, 0x00	; 0
+ 258:	e2 e3       	ldi	r30, 0x32	; 50
+ 25a:	f0 e0       	ldi	r31, 0x00	; 0
+ 25c:	80 81       	ld	r24, Z
+ 25e:	8e 7f       	andi	r24, 0xFE	; 254
+ 260:	8c 93       	st	X, r24
+	cbi(CTRL, RW); // AVR->LCD
+ 262:	a2 e3       	ldi	r26, 0x32	; 50
+ 264:	b0 e0       	ldi	r27, 0x00	; 0
+ 266:	e2 e3       	ldi	r30, 0x32	; 50
+ 268:	f0 e0       	ldi	r31, 0x00	; 0
+ 26a:	80 81       	ld	r24, Z
+ 26c:	8d 7f       	andi	r24, 0xFD	; 253
+ 26e:	8c 93       	st	X, r24
+	cbi(CTRL, EN);
+ 270:	a2 e3       	ldi	r26, 0x32	; 50
+ 272:	b0 e0       	ldi	r27, 0x00	; 0
+ 274:	e2 e3       	ldi	r30, 0x32	; 50
+ 276:	f0 e0       	ldi	r31, 0x00	; 0
+ 278:	80 81       	ld	r24, Z
+ 27a:	8b 7f       	andi	r24, 0xFB	; 251
+ 27c:	8c 93       	st	X, r24
+	#ifdef LCD8BIT	
+		Write8Bit(0x38);
+		wait_LCD();
+	#else
+		sbi(CTRL,EN); //enable
+ 27e:	a2 e3       	ldi	r26, 0x32	; 50
+ 280:	b0 e0       	ldi	r27, 0x00	; 0
+ 282:	e2 e3       	ldi	r30, 0x32	; 50
+ 284:	f0 e0       	ldi	r31, 0x00	; 0
+ 286:	80 81       	ld	r24, Z
+ 288:	84 60       	ori	r24, 0x04	; 4
+ 28a:	8c 93       	st	X, r24
+		sbi(DATA_O, 5); 
+ 28c:	a2 e3       	ldi	r26, 0x32	; 50
+ 28e:	b0 e0       	ldi	r27, 0x00	; 0
+ 290:	e2 e3       	ldi	r30, 0x32	; 50
+ 292:	f0 e0       	ldi	r31, 0x00	; 0
+ 294:	80 81       	ld	r24, Z
+ 296:	80 62       	ori	r24, 0x20	; 32
+ 298:	8c 93       	st	X, r24
+		cbi(CTRL,EN); //disable
+ 29a:	a2 e3       	ldi	r26, 0x32	; 50
+ 29c:	b0 e0       	ldi	r27, 0x00	; 0
+ 29e:	e2 e3       	ldi	r30, 0x32	; 50
+ 2a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a2:	80 81       	ld	r24, Z
+ 2a4:	8b 7f       	andi	r24, 0xFB	; 251
+ 2a6:	8c 93       	st	X, r24
+		wait_LCD();		
+ 2a8:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+		Write2Nib(0x28);//
+ 2ac:	88 e2       	ldi	r24, 0x28	; 40
+ 2ae:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();	
+ 2b2:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+	#endif
+//Display control-------------------------------------------------------------------------	
+	cbi(CTRL,RS); // the following data is COMMAND 
+ 2b6:	a2 e3       	ldi	r26, 0x32	; 50
+ 2b8:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ba:	e2 e3       	ldi	r30, 0x32	; 50
+ 2bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2be:	80 81       	ld	r24, Z
+ 2c0:	8e 7f       	andi	r24, 0xFE	; 254
+ 2c2:	8c 93       	st	X, r24
+	#ifdef LCD8BIT	
+		Write8Bit(0x0C);
+		wait_LCD();
+	#else
+		Write2Nib(0x0C); //not Cursor display, 0x0E: with cursor
+ 2c4:	8c e0       	ldi	r24, 0x0C	; 12
+ 2c6:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();			
+ 2ca:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+	#endif
+//Entry mode set------------------------------------------------------------------------
+	cbi(CTRL,RS); // the following data is COMMAND 
+ 2ce:	a2 e3       	ldi	r26, 0x32	; 50
+ 2d0:	b0 e0       	ldi	r27, 0x00	; 0
+ 2d2:	e2 e3       	ldi	r30, 0x32	; 50
+ 2d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d6:	80 81       	ld	r24, Z
+ 2d8:	8e 7f       	andi	r24, 0xFE	; 254
+ 2da:	8c 93       	st	X, r24
+	#ifdef LCD8BIT
+		Write8Bit(0x06);
+		wait_LCD();
+	#else
+		Write2Nib(0x06);
+ 2dc:	86 e0       	ldi	r24, 0x06	; 6
+ 2de:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();
+ 2e2:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+	#endif
+}
+ 2e6:	cf 91       	pop	r28
+ 2e8:	df 91       	pop	r29
+ 2ea:	08 95       	ret
+
+000002ec <home_LCD>:
+
+void home_LCD(void){
+ 2ec:	df 93       	push	r29
+ 2ee:	cf 93       	push	r28
+ 2f0:	cd b7       	in	r28, 0x3d	; 61
+ 2f2:	de b7       	in	r29, 0x3e	; 62
+	cbi(CTRL,RS); // the following data is COMMAND 
+ 2f4:	a2 e3       	ldi	r26, 0x32	; 50
+ 2f6:	b0 e0       	ldi	r27, 0x00	; 0
+ 2f8:	e2 e3       	ldi	r30, 0x32	; 50
+ 2fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 2fc:	80 81       	ld	r24, Z
+ 2fe:	8e 7f       	andi	r24, 0xFE	; 254
+ 300:	8c 93       	st	X, r24
+	#ifdef LCD8BIT	
+		Write8Bit(0x02);
+		wait_LCD();	
+	#else
+		Write2Nib(0x02);
+ 302:	82 e0       	ldi	r24, 0x02	; 2
+ 304:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();
+ 308:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+	#endif	
+}
+ 30c:	cf 91       	pop	r28
+ 30e:	df 91       	pop	r29
+ 310:	08 95       	ret
+
+00000312 <move_LCD>:
+void move_LCD(uint8_t y,uint8_t x){
+ 312:	df 93       	push	r29
+ 314:	cf 93       	push	r28
+ 316:	00 d0       	rcall	.+0      	; 0x318 <move_LCD+0x6>
+ 318:	0f 92       	push	r0
+ 31a:	cd b7       	in	r28, 0x3d	; 61
+ 31c:	de b7       	in	r29, 0x3e	; 62
+ 31e:	8a 83       	std	Y+2, r24	; 0x02
+ 320:	6b 83       	std	Y+3, r22	; 0x03
+	uint8_t Ad;
+	Ad=64*(y-1)+(x-1)+0x80; //
+ 322:	8a 81       	ldd	r24, Y+2	; 0x02
+ 324:	88 2f       	mov	r24, r24
+ 326:	90 e0       	ldi	r25, 0x00	; 0
+ 328:	01 97       	sbiw	r24, 0x01	; 1
+ 32a:	00 24       	eor	r0, r0
+ 32c:	96 95       	lsr	r25
+ 32e:	87 95       	ror	r24
+ 330:	07 94       	ror	r0
+ 332:	96 95       	lsr	r25
+ 334:	87 95       	ror	r24
+ 336:	07 94       	ror	r0
+ 338:	98 2f       	mov	r25, r24
+ 33a:	80 2d       	mov	r24, r0
+ 33c:	98 2f       	mov	r25, r24
+ 33e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 340:	89 0f       	add	r24, r25
+ 342:	81 58       	subi	r24, 0x81	; 129
+ 344:	89 83       	std	Y+1, r24	; 0x01
+	cbi(CTRL,RS); // the following data is COMMAND
+ 346:	a2 e3       	ldi	r26, 0x32	; 50
+ 348:	b0 e0       	ldi	r27, 0x00	; 0
+ 34a:	e2 e3       	ldi	r30, 0x32	; 50
+ 34c:	f0 e0       	ldi	r31, 0x00	; 0
+ 34e:	80 81       	ld	r24, Z
+ 350:	8e 7f       	andi	r24, 0xFE	; 254
+ 352:	8c 93       	st	X, r24
+	#ifdef LCD8BIT	
+		Write8Bit(Ad);
+		wait_LCD();
+	#else
+		Write2Nib(Ad);
+ 354:	89 81       	ldd	r24, Y+1	; 0x01
+ 356:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();
+ 35a:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+	#endif	
+}
+ 35e:	0f 90       	pop	r0
+ 360:	0f 90       	pop	r0
+ 362:	0f 90       	pop	r0
+ 364:	cf 91       	pop	r28
+ 366:	df 91       	pop	r29
+ 368:	08 95       	ret
+
+0000036a <clr_LCD>:
+
+void clr_LCD(void){
+ 36a:	df 93       	push	r29
+ 36c:	cf 93       	push	r28
+ 36e:	cd b7       	in	r28, 0x3d	; 61
+ 370:	de b7       	in	r29, 0x3e	; 62
+	cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
+ 372:	a2 e3       	ldi	r26, 0x32	; 50
+ 374:	b0 e0       	ldi	r27, 0x00	; 0
+ 376:	e2 e3       	ldi	r30, 0x32	; 50
+ 378:	f0 e0       	ldi	r31, 0x00	; 0
+ 37a:	80 81       	ld	r24, Z
+ 37c:	8e 7f       	andi	r24, 0xFE	; 254
+ 37e:	8c 93       	st	X, r24
+	#ifdef LCD8BIT	
+		Write8Bit(0x01);
+		wait_LCD();	
+	#else
+		Write2Nib(0x01);
+ 380:	81 e0       	ldi	r24, 0x01	; 1
+ 382:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();	
+ 386:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+		
+	#endif	
+}
+ 38a:	cf 91       	pop	r28
+ 38c:	df 91       	pop	r29
+ 38e:	08 95       	ret
+
+00000390 <putChar_LCD>:
+
+void putChar_LCD(uint8_t chr){
+ 390:	df 93       	push	r29
+ 392:	cf 93       	push	r28
+ 394:	0f 92       	push	r0
+ 396:	cd b7       	in	r28, 0x3d	; 61
+ 398:	de b7       	in	r29, 0x3e	; 62
+ 39a:	89 83       	std	Y+1, r24	; 0x01
+	sbi(CTRL,RS); //this is a normal DATA	
+ 39c:	a2 e3       	ldi	r26, 0x32	; 50
+ 39e:	b0 e0       	ldi	r27, 0x00	; 0
+ 3a0:	e2 e3       	ldi	r30, 0x32	; 50
+ 3a2:	f0 e0       	ldi	r31, 0x00	; 0
+ 3a4:	80 81       	ld	r24, Z
+ 3a6:	81 60       	ori	r24, 0x01	; 1
+ 3a8:	8c 93       	st	X, r24
+	#ifdef LCD8BIT	
+		Write8Bit(chr);
+		wait_LCD();	
+	#else
+		Write2Nib(chr);
+ 3aa:	89 81       	ldd	r24, Y+1	; 0x01
+ 3ac:	0e 94 90 00 	call	0x120	; 0x120 <Write2Nib>
+		wait_LCD();	
+ 3b0:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <wait_LCD>
+	#endif		
+}
+ 3b4:	0f 90       	pop	r0
+ 3b6:	cf 91       	pop	r28
+ 3b8:	df 91       	pop	r29
+ 3ba:	08 95       	ret
+
+000003bc <print_LCD>:
+
+void print_LCD(char* str){
+ 3bc:	df 93       	push	r29
+ 3be:	cf 93       	push	r28
+ 3c0:	00 d0       	rcall	.+0      	; 0x3c2 <print_LCD+0x6>
+ 3c2:	0f 92       	push	r0
+ 3c4:	cd b7       	in	r28, 0x3d	; 61
+ 3c6:	de b7       	in	r29, 0x3e	; 62
+ 3c8:	9b 83       	std	Y+3, r25	; 0x03
+ 3ca:	8a 83       	std	Y+2, r24	; 0x02
+	 unsigned char i;
+	 for (i=0; str[i]!=0; i++) putChar_LCD(str[i]);	 
+ 3cc:	19 82       	std	Y+1, r1	; 0x01
+ 3ce:	0e c0       	rjmp	.+28     	; 0x3ec <print_LCD+0x30>
+ 3d0:	89 81       	ldd	r24, Y+1	; 0x01
+ 3d2:	28 2f       	mov	r18, r24
+ 3d4:	30 e0       	ldi	r19, 0x00	; 0
+ 3d6:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3d8:	9b 81       	ldd	r25, Y+3	; 0x03
+ 3da:	fc 01       	movw	r30, r24
+ 3dc:	e2 0f       	add	r30, r18
+ 3de:	f3 1f       	adc	r31, r19
+ 3e0:	80 81       	ld	r24, Z
+ 3e2:	0e 94 c8 01 	call	0x390	; 0x390 <putChar_LCD>
+ 3e6:	89 81       	ldd	r24, Y+1	; 0x01
+ 3e8:	8f 5f       	subi	r24, 0xFF	; 255
+ 3ea:	89 83       	std	Y+1, r24	; 0x01
+ 3ec:	89 81       	ldd	r24, Y+1	; 0x01
+ 3ee:	28 2f       	mov	r18, r24
+ 3f0:	30 e0       	ldi	r19, 0x00	; 0
+ 3f2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3f4:	9b 81       	ldd	r25, Y+3	; 0x03
+ 3f6:	fc 01       	movw	r30, r24
+ 3f8:	e2 0f       	add	r30, r18
+ 3fa:	f3 1f       	adc	r31, r19
+ 3fc:	80 81       	ld	r24, Z
+ 3fe:	88 23       	and	r24, r24
+ 400:	39 f7       	brne	.-50     	; 0x3d0 <print_LCD+0x14>
+}
+ 402:	0f 90       	pop	r0
+ 404:	0f 90       	pop	r0
+ 406:	0f 90       	pop	r0
+ 408:	cf 91       	pop	r28
+ 40a:	df 91       	pop	r29
+ 40c:	08 95       	ret
+
+0000040e <Motor_Speed_PID>:
+
+volatile unsigned char sample_count = 0;
+
+//--------------------PID----------------------
+void Motor_Speed_PID (long int des_Speed)
+{
+ 40e:	ef 92       	push	r14
+ 410:	ff 92       	push	r15
+ 412:	0f 93       	push	r16
+ 414:	1f 93       	push	r17
+ 416:	df 93       	push	r29
+ 418:	cf 93       	push	r28
+ 41a:	00 d0       	rcall	.+0      	; 0x41c <Motor_Speed_PID+0xe>
+ 41c:	00 d0       	rcall	.+0      	; 0x41e <Motor_Speed_PID+0x10>
+ 41e:	00 d0       	rcall	.+0      	; 0x420 <Motor_Speed_PID+0x12>
+ 420:	cd b7       	in	r28, 0x3d	; 61
+ 422:	de b7       	in	r29, 0x3e	; 62
+ 424:	69 83       	std	Y+1, r22	; 0x01
+ 426:	7a 83       	std	Y+2, r23	; 0x02
+ 428:	8b 83       	std	Y+3, r24	; 0x03
+ 42a:	9c 83       	std	Y+4, r25	; 0x04
+	rSpeed = Pulse - pre_Pulse ; // tinh van toc trong sampling time
+ 42c:	20 91 7d 00 	lds	r18, 0x007D
+ 430:	30 91 7e 00 	lds	r19, 0x007E
+ 434:	40 91 7f 00 	lds	r20, 0x007F
+ 438:	50 91 80 00 	lds	r21, 0x0080
+ 43c:	80 91 89 00 	lds	r24, 0x0089
+ 440:	90 91 8a 00 	lds	r25, 0x008A
+ 444:	a0 91 8b 00 	lds	r26, 0x008B
+ 448:	b0 91 8c 00 	lds	r27, 0x008C
+ 44c:	79 01       	movw	r14, r18
+ 44e:	8a 01       	movw	r16, r20
+ 450:	e8 1a       	sub	r14, r24
+ 452:	f9 0a       	sbc	r15, r25
+ 454:	0a 0b       	sbc	r16, r26
+ 456:	1b 0b       	sbc	r17, r27
+ 458:	d8 01       	movw	r26, r16
+ 45a:	c7 01       	movw	r24, r14
+ 45c:	80 93 91 00 	sts	0x0091, r24
+ 460:	90 93 92 00 	sts	0x0092, r25
+ 464:	a0 93 93 00 	sts	0x0093, r26
+ 468:	b0 93 94 00 	sts	0x0094, r27
+	pre_Pulse = Pulse ; 		 // lưu lại giá trị Pulse : so xung
+ 46c:	80 91 7d 00 	lds	r24, 0x007D
+ 470:	90 91 7e 00 	lds	r25, 0x007E
+ 474:	a0 91 7f 00 	lds	r26, 0x007F
+ 478:	b0 91 80 00 	lds	r27, 0x0080
+ 47c:	80 93 89 00 	sts	0x0089, r24
+ 480:	90 93 8a 00 	sts	0x008A, r25
+ 484:	a0 93 8b 00 	sts	0x008B, r26
+ 488:	b0 93 8c 00 	sts	0x008C, r27
+	Err = des_Speed - abs(rSpeed);// tinh error lỗi
+ 48c:	80 91 91 00 	lds	r24, 0x0091
+ 490:	90 91 92 00 	lds	r25, 0x0092
+ 494:	a0 91 93 00 	lds	r26, 0x0093
+ 498:	b0 91 94 00 	lds	r27, 0x0094
+ 49c:	9e 83       	std	Y+6, r25	; 0x06
+ 49e:	8d 83       	std	Y+5, r24	; 0x05
+ 4a0:	0d 81       	ldd	r16, Y+5	; 0x05
+ 4a2:	1e 81       	ldd	r17, Y+6	; 0x06
+ 4a4:	11 23       	and	r17, r17
+ 4a6:	3c f4       	brge	.+14     	; 0x4b6 <Motor_Speed_PID+0xa8>
+ 4a8:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4aa:	9e 81       	ldd	r25, Y+6	; 0x06
+ 4ac:	90 95       	com	r25
+ 4ae:	81 95       	neg	r24
+ 4b0:	9f 4f       	sbci	r25, 0xFF	; 255
+ 4b2:	9e 83       	std	Y+6, r25	; 0x06
+ 4b4:	8d 83       	std	Y+5, r24	; 0x05
+ 4b6:	ed 80       	ldd	r14, Y+5	; 0x05
+ 4b8:	fe 80       	ldd	r15, Y+6	; 0x06
+ 4ba:	97 01       	movw	r18, r14
+ 4bc:	44 27       	eor	r20, r20
+ 4be:	37 fd       	sbrc	r19, 7
+ 4c0:	40 95       	com	r20
+ 4c2:	54 2f       	mov	r21, r20
+ 4c4:	89 81       	ldd	r24, Y+1	; 0x01
+ 4c6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 4c8:	ab 81       	ldd	r26, Y+3	; 0x03
+ 4ca:	bc 81       	ldd	r27, Y+4	; 0x04
+ 4cc:	82 1b       	sub	r24, r18
+ 4ce:	93 0b       	sbc	r25, r19
+ 4d0:	a4 0b       	sbc	r26, r20
+ 4d2:	b5 0b       	sbc	r27, r21
+ 4d4:	80 93 85 00 	sts	0x0085, r24
+ 4d8:	90 93 86 00 	sts	0x0086, r25
+ 4dc:	a0 93 87 00 	sts	0x0087, r26
+ 4e0:	b0 93 88 00 	sts	0x0088, r27
+
+	// ----------các thành phần của PID ------------
+	pPart = Kp * Err ;
+ 4e4:	80 91 60 00 	lds	r24, 0x0060
+ 4e8:	90 91 61 00 	lds	r25, 0x0061
+ 4ec:	a0 91 62 00 	lds	r26, 0x0062
+ 4f0:	b0 91 63 00 	lds	r27, 0x0063
+ 4f4:	20 91 85 00 	lds	r18, 0x0085
+ 4f8:	30 91 86 00 	lds	r19, 0x0086
+ 4fc:	40 91 87 00 	lds	r20, 0x0087
+ 500:	50 91 88 00 	lds	r21, 0x0088
+ 504:	bc 01       	movw	r22, r24
+ 506:	cd 01       	movw	r24, r26
+ 508:	0e 94 e8 03 	call	0x7d0	; 0x7d0 <__mulsi3>
+ 50c:	dc 01       	movw	r26, r24
+ 50e:	cb 01       	movw	r24, r22
+ 510:	80 93 70 00 	sts	0x0070, r24
+ 514:	90 93 71 00 	sts	0x0071, r25
+ 518:	a0 93 72 00 	sts	0x0072, r26
+ 51c:	b0 93 73 00 	sts	0x0073, r27
+	dPart = Kd * ( Err - pre_Err ) * inv_Sampling_time ;
+ 520:	20 91 85 00 	lds	r18, 0x0085
+ 524:	30 91 86 00 	lds	r19, 0x0086
+ 528:	40 91 87 00 	lds	r20, 0x0087
+ 52c:	50 91 88 00 	lds	r21, 0x0088
+ 530:	80 91 81 00 	lds	r24, 0x0081
+ 534:	90 91 82 00 	lds	r25, 0x0082
+ 538:	a0 91 83 00 	lds	r26, 0x0083
+ 53c:	b0 91 84 00 	lds	r27, 0x0084
+ 540:	79 01       	movw	r14, r18
+ 542:	8a 01       	movw	r16, r20
+ 544:	e8 1a       	sub	r14, r24
+ 546:	f9 0a       	sbc	r15, r25
+ 548:	0a 0b       	sbc	r16, r26
+ 54a:	1b 0b       	sbc	r17, r27
+ 54c:	d8 01       	movw	r26, r16
+ 54e:	c7 01       	movw	r24, r14
+ 550:	20 91 64 00 	lds	r18, 0x0064
+ 554:	30 91 65 00 	lds	r19, 0x0065
+ 558:	40 91 66 00 	lds	r20, 0x0066
+ 55c:	50 91 67 00 	lds	r21, 0x0067
+ 560:	bc 01       	movw	r22, r24
+ 562:	cd 01       	movw	r24, r26
+ 564:	0e 94 e8 03 	call	0x7d0	; 0x7d0 <__mulsi3>
+ 568:	dc 01       	movw	r26, r24
+ 56a:	cb 01       	movw	r24, r22
+ 56c:	28 e2       	ldi	r18, 0x28	; 40
+ 56e:	30 e0       	ldi	r19, 0x00	; 0
+ 570:	40 e0       	ldi	r20, 0x00	; 0
+ 572:	50 e0       	ldi	r21, 0x00	; 0
+ 574:	bc 01       	movw	r22, r24
+ 576:	cd 01       	movw	r24, r26
+ 578:	0e 94 e8 03 	call	0x7d0	; 0x7d0 <__mulsi3>
+ 57c:	dc 01       	movw	r26, r24
+ 57e:	cb 01       	movw	r24, r22
+ 580:	80 93 78 00 	sts	0x0078, r24
+ 584:	90 93 79 00 	sts	0x0079, r25
+ 588:	a0 93 7a 00 	sts	0x007A, r26
+ 58c:	b0 93 7b 00 	sts	0x007B, r27
+	iPart = iPart + ( Ki * Sampling_time * Err / 1000 ) ;
+ 590:	80 91 68 00 	lds	r24, 0x0068
+ 594:	90 91 69 00 	lds	r25, 0x0069
+ 598:	a0 91 6a 00 	lds	r26, 0x006A
+ 59c:	b0 91 6b 00 	lds	r27, 0x006B
+ 5a0:	29 e1       	ldi	r18, 0x19	; 25
+ 5a2:	30 e0       	ldi	r19, 0x00	; 0
+ 5a4:	40 e0       	ldi	r20, 0x00	; 0
+ 5a6:	50 e0       	ldi	r21, 0x00	; 0
+ 5a8:	bc 01       	movw	r22, r24
+ 5aa:	cd 01       	movw	r24, r26
+ 5ac:	0e 94 e8 03 	call	0x7d0	; 0x7d0 <__mulsi3>
+ 5b0:	dc 01       	movw	r26, r24
+ 5b2:	cb 01       	movw	r24, r22
+ 5b4:	20 91 85 00 	lds	r18, 0x0085
+ 5b8:	30 91 86 00 	lds	r19, 0x0086
+ 5bc:	40 91 87 00 	lds	r20, 0x0087
+ 5c0:	50 91 88 00 	lds	r21, 0x0088
+ 5c4:	bc 01       	movw	r22, r24
+ 5c6:	cd 01       	movw	r24, r26
+ 5c8:	0e 94 e8 03 	call	0x7d0	; 0x7d0 <__mulsi3>
+ 5cc:	dc 01       	movw	r26, r24
+ 5ce:	cb 01       	movw	r24, r22
+ 5d0:	28 ee       	ldi	r18, 0xE8	; 232
+ 5d2:	33 e0       	ldi	r19, 0x03	; 3
+ 5d4:	40 e0       	ldi	r20, 0x00	; 0
+ 5d6:	50 e0       	ldi	r21, 0x00	; 0
+ 5d8:	bc 01       	movw	r22, r24
+ 5da:	cd 01       	movw	r24, r26
+ 5dc:	0e 94 07 04 	call	0x80e	; 0x80e <__divmodsi4>
+ 5e0:	da 01       	movw	r26, r20
+ 5e2:	c9 01       	movw	r24, r18
+ 5e4:	9c 01       	movw	r18, r24
+ 5e6:	ad 01       	movw	r20, r26
+ 5e8:	80 91 74 00 	lds	r24, 0x0074
+ 5ec:	90 91 75 00 	lds	r25, 0x0075
+ 5f0:	a0 91 76 00 	lds	r26, 0x0076
+ 5f4:	b0 91 77 00 	lds	r27, 0x0077
+ 5f8:	82 0f       	add	r24, r18
+ 5fa:	93 1f       	adc	r25, r19
+ 5fc:	a4 1f       	adc	r26, r20
+ 5fe:	b5 1f       	adc	r27, r21
+ 600:	80 93 74 00 	sts	0x0074, r24
+ 604:	90 93 75 00 	sts	0x0075, r25
+ 608:	a0 93 76 00 	sts	0x0076, r26
+ 60c:	b0 93 77 00 	sts	0x0077, r27
+   Output = Output + ( pPart + dPart + iPart ) ;
+ 610:	20 91 70 00 	lds	r18, 0x0070
+ 614:	30 91 71 00 	lds	r19, 0x0071
+ 618:	40 91 72 00 	lds	r20, 0x0072
+ 61c:	50 91 73 00 	lds	r21, 0x0073
+ 620:	80 91 78 00 	lds	r24, 0x0078
+ 624:	90 91 79 00 	lds	r25, 0x0079
+ 628:	a0 91 7a 00 	lds	r26, 0x007A
+ 62c:	b0 91 7b 00 	lds	r27, 0x007B
+ 630:	28 0f       	add	r18, r24
+ 632:	39 1f       	adc	r19, r25
+ 634:	4a 1f       	adc	r20, r26
+ 636:	5b 1f       	adc	r21, r27
+ 638:	80 91 74 00 	lds	r24, 0x0074
+ 63c:	90 91 75 00 	lds	r25, 0x0075
+ 640:	a0 91 76 00 	lds	r26, 0x0076
+ 644:	b0 91 77 00 	lds	r27, 0x0077
+ 648:	28 0f       	add	r18, r24
+ 64a:	39 1f       	adc	r19, r25
+ 64c:	4a 1f       	adc	r20, r26
+ 64e:	5b 1f       	adc	r21, r27
+ 650:	80 91 8d 00 	lds	r24, 0x008D
+ 654:	90 91 8e 00 	lds	r25, 0x008E
+ 658:	a0 91 8f 00 	lds	r26, 0x008F
+ 65c:	b0 91 90 00 	lds	r27, 0x0090
+ 660:	82 0f       	add	r24, r18
+ 662:	93 1f       	adc	r25, r19
+ 664:	a4 1f       	adc	r26, r20
+ 666:	b5 1f       	adc	r27, r21
+ 668:	80 93 8d 00 	sts	0x008D, r24
+ 66c:	90 93 8e 00 	sts	0x008E, r25
+ 670:	a0 93 8f 00 	sts	0x008F, r26
+ 674:	b0 93 90 00 	sts	0x0090, r27
+    // công thức được biến đổi vì là điều khiển vận tốc
+
+	// saturation
+
+	if ( Output >= PWM_Period )
+ 678:	80 91 8d 00 	lds	r24, 0x008D
+ 67c:	90 91 8e 00 	lds	r25, 0x008E
+ 680:	a0 91 8f 00 	lds	r26, 0x008F
+ 684:	b0 91 90 00 	lds	r27, 0x0090
+ 688:	80 34       	cpi	r24, 0x40	; 64
+ 68a:	0f e1       	ldi	r16, 0x1F	; 31
+ 68c:	90 07       	cpc	r25, r16
+ 68e:	00 e0       	ldi	r16, 0x00	; 0
+ 690:	a0 07       	cpc	r26, r16
+ 692:	00 e0       	ldi	r16, 0x00	; 0
+ 694:	b0 07       	cpc	r27, r16
+ 696:	64 f0       	brlt	.+24     	; 0x6b0 <Motor_Speed_PID+0x2a2>
+	{
+		Output = PWM_Period - 1;
+ 698:	8f e3       	ldi	r24, 0x3F	; 63
+ 69a:	9f e1       	ldi	r25, 0x1F	; 31
+ 69c:	a0 e0       	ldi	r26, 0x00	; 0
+ 69e:	b0 e0       	ldi	r27, 0x00	; 0
+ 6a0:	80 93 8d 00 	sts	0x008D, r24
+ 6a4:	90 93 8e 00 	sts	0x008E, r25
+ 6a8:	a0 93 8f 00 	sts	0x008F, r26
+ 6ac:	b0 93 90 00 	sts	0x0090, r27
+	}
+
+	if ( Output <= 0 )
+ 6b0:	80 91 8d 00 	lds	r24, 0x008D
+ 6b4:	90 91 8e 00 	lds	r25, 0x008E
+ 6b8:	a0 91 8f 00 	lds	r26, 0x008F
+ 6bc:	b0 91 90 00 	lds	r27, 0x0090
+ 6c0:	18 16       	cp	r1, r24
+ 6c2:	19 06       	cpc	r1, r25
+ 6c4:	1a 06       	cpc	r1, r26
+ 6c6:	1b 06       	cpc	r1, r27
+ 6c8:	64 f0       	brlt	.+24     	; 0x6e2 <Motor_Speed_PID+0x2d4>
+	{
+		Output = 1;
+ 6ca:	81 e0       	ldi	r24, 0x01	; 1
+ 6cc:	90 e0       	ldi	r25, 0x00	; 0
+ 6ce:	a0 e0       	ldi	r26, 0x00	; 0
+ 6d0:	b0 e0       	ldi	r27, 0x00	; 0
+ 6d2:	80 93 8d 00 	sts	0x008D, r24
+ 6d6:	90 93 8e 00 	sts	0x008E, r25
+ 6da:	a0 93 8f 00 	sts	0x008F, r26
+ 6de:	b0 93 90 00 	sts	0x0090, r27
+	}
+	OCR1A = Output ; // gan duty cycles cho OCR1A : update PWM
+ 6e2:	ea e4       	ldi	r30, 0x4A	; 74
+ 6e4:	f0 e0       	ldi	r31, 0x00	; 0
+ 6e6:	80 91 8d 00 	lds	r24, 0x008D
+ 6ea:	90 91 8e 00 	lds	r25, 0x008E
+ 6ee:	a0 91 8f 00 	lds	r26, 0x008F
+ 6f2:	b0 91 90 00 	lds	r27, 0x0090
+ 6f6:	91 83       	std	Z+1, r25	; 0x01
+ 6f8:	80 83       	st	Z, r24
+	pre_Err = Err ; // lưu lại giá trị Err
+ 6fa:	80 91 85 00 	lds	r24, 0x0085
+ 6fe:	90 91 86 00 	lds	r25, 0x0086
+ 702:	a0 91 87 00 	lds	r26, 0x0087
+ 706:	b0 91 88 00 	lds	r27, 0x0088
+ 70a:	80 93 81 00 	sts	0x0081, r24
+ 70e:	90 93 82 00 	sts	0x0082, r25
+ 712:	a0 93 83 00 	sts	0x0083, r26
+ 716:	b0 93 84 00 	sts	0x0084, r27
+}
+ 71a:	26 96       	adiw	r28, 0x06	; 6
+ 71c:	0f b6       	in	r0, 0x3f	; 63
+ 71e:	f8 94       	cli
+ 720:	de bf       	out	0x3e, r29	; 62
+ 722:	0f be       	out	0x3f, r0	; 63
+ 724:	cd bf       	out	0x3d, r28	; 61
+ 726:	cf 91       	pop	r28
+ 728:	df 91       	pop	r29
+ 72a:	1f 91       	pop	r17
+ 72c:	0f 91       	pop	r16
+ 72e:	ff 90       	pop	r15
+ 730:	ef 90       	pop	r14
+ 732:	08 95       	ret
+
+00000734 <main>:
+
+int main()
+{
+ 734:	df 93       	push	r29
+ 736:	cf 93       	push	r28
+ 738:	cd b7       	in	r28, 0x3d	; 61
+ 73a:	de b7       	in	r29, 0x3e	; 62
+ 73c:	27 97       	sbiw	r28, 0x07	; 7
+ 73e:	0f b6       	in	r0, 0x3f	; 63
+ 740:	f8 94       	cli
+ 742:	de bf       	out	0x3e, r29	; 62
+ 744:	0f be       	out	0x3f, r0	; 63
+ 746:	cd bf       	out	0x3d, r28	; 61
+	unsigned char dis[5] ; // biến tạm hiển thị LCD
+	Pulse = 0;
+ 748:	10 92 7d 00 	sts	0x007D, r1
+ 74c:	10 92 7e 00 	sts	0x007E, r1
+ 750:	10 92 7f 00 	sts	0x007F, r1
+ 754:	10 92 80 00 	sts	0x0080, r1
+	// encoder va cac chan nhan toc do
+	DDRB = 0x00 ; // set PORTB
+ 758:	e7 e3       	ldi	r30, 0x37	; 55
+ 75a:	f0 e0       	ldi	r31, 0x00	; 0
+ 75c:	10 82       	st	Z, r1
+	PORTB = 0xFF ; // điện trở kéo lên
+ 75e:	e8 e3       	ldi	r30, 0x38	; 56
+ 760:	f0 e0       	ldi	r31, 0x00	; 0
+ 762:	8f ef       	ldi	r24, 0xFF	; 255
+ 764:	80 83       	st	Z, r24
+	// Motor
+	MOTOR_DDR = 0xF0;
+ 766:	e1 e3       	ldi	r30, 0x31	; 49
+ 768:	f0 e0       	ldi	r31, 0x00	; 0
+ 76a:	80 ef       	ldi	r24, 0xF0	; 240
+ 76c:	80 83       	st	Z, r24
+	sbi(MOTOR_PORT,MOTOR_DIR);
+ 76e:	a2 e3       	ldi	r26, 0x32	; 50
+ 770:	b0 e0       	ldi	r27, 0x00	; 0
+ 772:	e2 e3       	ldi	r30, 0x32	; 50
+ 774:	f0 e0       	ldi	r31, 0x00	; 0
+ 776:	80 81       	ld	r24, Z
+ 778:	80 64       	ori	r24, 0x40	; 64
+ 77a:	8c 93       	st	X, r24
+	// ngat ngoai cho encoder
+	MCUCSR |= ( 0 << ISC2 ); // ngat INT2 là ngắt cạnh xuống
+ 77c:	a4 e5       	ldi	r26, 0x54	; 84
+ 77e:	b0 e0       	ldi	r27, 0x00	; 0
+ 780:	e4 e5       	ldi	r30, 0x54	; 84
+ 782:	f0 e0       	ldi	r31, 0x00	; 0
+ 784:	80 81       	ld	r24, Z
+ 786:	8c 93       	st	X, r24
+	GICR |= ( 1 << INT2 ) ;  // Enable INT2
+ 788:	ab e5       	ldi	r26, 0x5B	; 91
+ 78a:	b0 e0       	ldi	r27, 0x00	; 0
+ 78c:	eb e5       	ldi	r30, 0x5B	; 91
+ 78e:	f0 e0       	ldi	r31, 0x00	; 0
+ 790:	80 81       	ld	r24, Z
+ 792:	80 62       	ori	r24, 0x20	; 32
+ 794:	8c 93       	st	X, r24
+	// ----------------------------------------
+	// dung timer 2 làm bộ định thì 25ms sampling time
+	TCCR2 = ( 1 << CS22 ) | ( 1 << CS21 ) | ( 1 << CS20 );
+ 796:	e5 e4       	ldi	r30, 0x45	; 69
+ 798:	f0 e0       	ldi	r31, 0x00	; 0
+ 79a:	87 e0       	ldi	r24, 0x07	; 7
+ 79c:	80 83       	st	Z, r24
+	// CS22 = 1 , CS21 = 1 , CS20 = 1  Prescaler = 1024
+	TCNT2 = 60 ;
+ 79e:	e4 e4       	ldi	r30, 0x44	; 68
+ 7a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 7a2:	8c e3       	ldi	r24, 0x3C	; 60
+ 7a4:	80 83       	st	Z, r24
+	// gán giá trị khởi tạo cho T/C2 để được 25ms (trường hợp f = 8 MHz )
+	TIMSK = ( 1 << TOIE2 ); // cho phep ngắt khi có tràn T/C2
+ 7a6:	e9 e5       	ldi	r30, 0x59	; 89
+ 7a8:	f0 e0       	ldi	r31, 0x00	; 0
+ 7aa:	80 e4       	ldi	r24, 0x40	; 64
+ 7ac:	80 83       	st	Z, r24
+	//---------------------------------------------------
+	// dùng time 1 làm PWM generator , Fast PWM mode 114 : ICR1 chua time period
+	TCCR1A = ( 1 << COM1A1 ) | ( 1 << COM1B1 ) | ( 1 << WGM11 );
+ 7ae:	ef e4       	ldi	r30, 0x4F	; 79
+ 7b0:	f0 e0       	ldi	r31, 0x00	; 0
+ 7b2:	82 ea       	ldi	r24, 0xA2	; 162
+ 7b4:	80 83       	st	Z, r24
+	TCCR1B = ( 1 << WGM13 ) | ( 1 << WGM12 ) | ( 1 << CS10 );
+ 7b6:	ee e4       	ldi	r30, 0x4E	; 78
+ 7b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 7ba:	89 e1       	ldi	r24, 0x19	; 25
+ 7bc:	80 83       	st	Z, r24
+	//----------------------------------------------------
+
+
+
+}
+ 7be:	27 96       	adiw	r28, 0x07	; 7
+ 7c0:	0f b6       	in	r0, 0x3f	; 63
+ 7c2:	f8 94       	cli
+ 7c4:	de bf       	out	0x3e, r29	; 62
+ 7c6:	0f be       	out	0x3f, r0	; 63
+ 7c8:	cd bf       	out	0x3d, r28	; 61
+ 7ca:	cf 91       	pop	r28
+ 7cc:	df 91       	pop	r29
+ 7ce:	08 95       	ret
+
+000007d0 <__mulsi3>:
+ 7d0:	62 9f       	mul	r22, r18
+ 7d2:	d0 01       	movw	r26, r0
+ 7d4:	73 9f       	mul	r23, r19
+ 7d6:	f0 01       	movw	r30, r0
+ 7d8:	82 9f       	mul	r24, r18
+ 7da:	e0 0d       	add	r30, r0
+ 7dc:	f1 1d       	adc	r31, r1
+ 7de:	64 9f       	mul	r22, r20
+ 7e0:	e0 0d       	add	r30, r0
+ 7e2:	f1 1d       	adc	r31, r1
+ 7e4:	92 9f       	mul	r25, r18
+ 7e6:	f0 0d       	add	r31, r0
+ 7e8:	83 9f       	mul	r24, r19
+ 7ea:	f0 0d       	add	r31, r0
+ 7ec:	74 9f       	mul	r23, r20
+ 7ee:	f0 0d       	add	r31, r0
+ 7f0:	65 9f       	mul	r22, r21
+ 7f2:	f0 0d       	add	r31, r0
+ 7f4:	99 27       	eor	r25, r25
+ 7f6:	72 9f       	mul	r23, r18
+ 7f8:	b0 0d       	add	r27, r0
+ 7fa:	e1 1d       	adc	r30, r1
+ 7fc:	f9 1f       	adc	r31, r25
+ 7fe:	63 9f       	mul	r22, r19
+ 800:	b0 0d       	add	r27, r0
+ 802:	e1 1d       	adc	r30, r1
+ 804:	f9 1f       	adc	r31, r25
+ 806:	bd 01       	movw	r22, r26
+ 808:	cf 01       	movw	r24, r30
+ 80a:	11 24       	eor	r1, r1
+ 80c:	08 95       	ret
+
+0000080e <__divmodsi4>:
+ 80e:	97 fb       	bst	r25, 7
+ 810:	09 2e       	mov	r0, r25
+ 812:	05 26       	eor	r0, r21
+ 814:	0e d0       	rcall	.+28     	; 0x832 <__divmodsi4_neg1>
+ 816:	57 fd       	sbrc	r21, 7
+ 818:	04 d0       	rcall	.+8      	; 0x822 <__divmodsi4_neg2>
+ 81a:	14 d0       	rcall	.+40     	; 0x844 <__udivmodsi4>
+ 81c:	0a d0       	rcall	.+20     	; 0x832 <__divmodsi4_neg1>
+ 81e:	00 1c       	adc	r0, r0
+ 820:	38 f4       	brcc	.+14     	; 0x830 <__divmodsi4_exit>
+
+00000822 <__divmodsi4_neg2>:
+ 822:	50 95       	com	r21
+ 824:	40 95       	com	r20
+ 826:	30 95       	com	r19
+ 828:	21 95       	neg	r18
+ 82a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 82c:	4f 4f       	sbci	r20, 0xFF	; 255
+ 82e:	5f 4f       	sbci	r21, 0xFF	; 255
+
+00000830 <__divmodsi4_exit>:
+ 830:	08 95       	ret
+
+00000832 <__divmodsi4_neg1>:
+ 832:	f6 f7       	brtc	.-4      	; 0x830 <__divmodsi4_exit>
+ 834:	90 95       	com	r25
+ 836:	80 95       	com	r24
+ 838:	70 95       	com	r23
+ 83a:	61 95       	neg	r22
+ 83c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 83e:	8f 4f       	sbci	r24, 0xFF	; 255
+ 840:	9f 4f       	sbci	r25, 0xFF	; 255
+ 842:	08 95       	ret
+
+00000844 <__udivmodsi4>:
+ 844:	a1 e2       	ldi	r26, 0x21	; 33
+ 846:	1a 2e       	mov	r1, r26
+ 848:	aa 1b       	sub	r26, r26
+ 84a:	bb 1b       	sub	r27, r27
+ 84c:	fd 01       	movw	r30, r26
+ 84e:	0d c0       	rjmp	.+26     	; 0x86a <__udivmodsi4_ep>
+
+00000850 <__udivmodsi4_loop>:
+ 850:	aa 1f       	adc	r26, r26
+ 852:	bb 1f       	adc	r27, r27
+ 854:	ee 1f       	adc	r30, r30
+ 856:	ff 1f       	adc	r31, r31
+ 858:	a2 17       	cp	r26, r18
+ 85a:	b3 07       	cpc	r27, r19
+ 85c:	e4 07       	cpc	r30, r20
+ 85e:	f5 07       	cpc	r31, r21
+ 860:	20 f0       	brcs	.+8      	; 0x86a <__udivmodsi4_ep>
+ 862:	a2 1b       	sub	r26, r18
+ 864:	b3 0b       	sbc	r27, r19
+ 866:	e4 0b       	sbc	r30, r20
+ 868:	f5 0b       	sbc	r31, r21
+
+0000086a <__udivmodsi4_ep>:
+ 86a:	66 1f       	adc	r22, r22
+ 86c:	77 1f       	adc	r23, r23
+ 86e:	88 1f       	adc	r24, r24
+ 870:	99 1f       	adc	r25, r25
+ 872:	1a 94       	dec	r1
+ 874:	69 f7       	brne	.-38     	; 0x850 <__udivmodsi4_loop>
+ 876:	60 95       	com	r22
+ 878:	70 95       	com	r23
+ 87a:	80 95       	com	r24
+ 87c:	90 95       	com	r25
+ 87e:	9b 01       	movw	r18, r22
+ 880:	ac 01       	movw	r20, r24
+ 882:	bd 01       	movw	r22, r26
+ 884:	cf 01       	movw	r24, r30
+ 886:	08 95       	ret
+
+00000888 <_exit>:
+ 888:	f8 94       	cli
+
+0000088a <__stop_program>:
+ 88a:	ff cf       	rjmp	.-2      	; 0x88a <__stop_program>

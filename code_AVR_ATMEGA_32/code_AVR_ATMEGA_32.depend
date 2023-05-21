@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1492506068 source:d:\bai tap c++\code_avr_atmega_32\fuse.c
+	<avr/io.h>
+
+1492535647 source:d:\bai tap c++\code_avr_atmega_32\main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+	<math.h>
+	<stdio.h>
+	"myLCD.h"
+
+1262789249 d:\bai tap c++\code_avr_atmega_32\mylcd.h
+	<util/delay.h>
+
